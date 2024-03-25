@@ -93,23 +93,23 @@ class Student:
 
         sid_label=Label(ci_frame,text="Student PID",font=("times new roman", 15, "bold"),bg="black",fg="white")
         sid_label.grid(row=0,column=0,padx=10,sticky=W)
-        studentID_entry=ttk.Entry(ci_frame,textvariable=self.var_pid,width=20,font=("times new roman", 15, "bold"))
-        studentID_entry.grid(row=0,column=1,padx=20,pady=5,sticky=W)
+        studentID_entry=ttk.Entry(ci_frame,textvariable=self.var_pid,width=17,font=("times new roman", 15, "bold"))
+        studentID_entry.grid(row=0,column=1,padx=20,pady=10,sticky=W)
 
         sn_label=Label(ci_frame,text="Student Name",font=("times new roman", 15, "bold"),bg="black",fg="white")
         sn_label.grid(row=0,column=2,padx=10,sticky=W)
-        sn_entry=ttk.Entry(ci_frame,width=20,textvariable=self.var_name,font=("times new roman", 15, "bold"))
-        sn_entry.grid(row=0,column=3,padx=20,pady=5,sticky=W)
+        sn_entry=ttk.Entry(ci_frame,width=17,textvariable=self.var_name,font=("times new roman", 15, "bold"))
+        sn_entry.grid(row=0,column=3,padx=20,pady=10,sticky=W)
 
         sid_label=Label(ci_frame,text="Division",font=("times new roman", 15, "bold"),bg="black",fg="white")
         sid_label.grid(row=1,column=0,padx=10,sticky=W)
-        studentID_entry=ttk.Entry(ci_frame,textvariable=self.var_div,width=20,font=("times new roman", 15, "bold"))
-        studentID_entry.grid(row=1,column=1,padx=20,pady=5,sticky=W)
+        studentID_entry=ttk.Entry(ci_frame,textvariable=self.var_div,width=17,font=("times new roman", 15, "bold"))
+        studentID_entry.grid(row=1,column=1,padx=20,pady=10,sticky=W)
 
         se_label=Label(ci_frame,text="Roll no",font=("times new roman", 15, "bold"),bg="black",fg="white")
         se_label.grid(row=1,column=2,padx=10,sticky=W)
-        se_entry=ttk.Entry(ci_frame,textvariable=self.var_rollno,width=20,font=("times new roman", 15, "bold"))
-        se_entry.grid(row=1,column=3,padx=20,pady=5,sticky=W)
+        se_entry=ttk.Entry(ci_frame,textvariable=self.var_rollno,width=17,font=("times new roman", 15, "bold"))
+        se_entry.grid(row=1,column=3,padx=20,pady=10,sticky=W)
 
         # sr_label=Label(ci_frame,text="Roll No",font=("times new roman", 15, "bold"),bg="black",fg="white")
         # sr_label.grid(row=2,column=0,padx=10,sticky=W)
@@ -127,22 +127,23 @@ class Student:
         # radiobutton2=ttk.Radiobutton(ci_frame,text="No Photo Sample", value="No")
         # radiobutton2.grid(row=6,column=1)
         
-
+        self.exit_button = ttk.Button(self.root, text="Exit", command=self.exit_application)
+        self.exit_button.place(x=1400, y=750, width=70, height=30)
 
         btn_frame=Frame(ci_frame,bd=2,relief=RIDGE)
         btn_frame.place(x=0,y=175,width=680,height=50)
 
-        sbtn=Button(btn_frame,text="Save",command=self.add_data,width=10,font=("times new roman", 15, "bold"),bg="black",fg="white")
+        sbtn=Button(btn_frame,text="Save",command=self.add_data,width=9,font=("times new roman", 15, "bold"),bg="black",fg="white")
         sbtn.grid(row=0,column=0)
         # sbtn=Button(btn_frame,text="Update",width=13,font=("times new roman", 15, "bold"),bg="black",fg="white")
         # sbtn.grid(row=0,column=1)
-        sbtn=Button(btn_frame,text="Delete",command=self.del_date,width=10,font=("times new roman", 15, "bold"),bg="black",fg="white")
+        sbtn=Button(btn_frame,text="Delete",command=self.del_date,width=9,font=("times new roman", 15, "bold"),bg="black",fg="white")
         sbtn.grid(row=0,column=2)
-        sbtn=Button(btn_frame,text="Reset",command=self.reset,width=10,font=("times new roman", 15, "bold"),bg="black",fg="white")
+        sbtn=Button(btn_frame,text="Reset",command=self.reset,width=8,font=("times new roman", 15, "bold"),bg="black",fg="white")
         sbtn.grid(row=0,column=3)
-        sbtn=Button(btn_frame,text="Take Photo Sample",command=self.generate_dataset,width=10,font=("times new roman", 15, "bold"),bg="black",fg="white")
+        sbtn=Button(btn_frame,text="Take Photo Sample",command=self.generate_dataset,width=15,font=("times new roman", 15, "bold"),bg="black",fg="white")
         sbtn.grid(row=0,column=4)
-        sbtn=Button(btn_frame,text="Train Images ",command=self.train_data,width=13,font=("times new roman", 15, "bold"),bg="black",fg="white")
+        sbtn=Button(btn_frame,text="Train Images ",command=self.train_data,width=12,font=("times new roman", 15, "bold"),bg="black",fg="white")
         sbtn.grid(row=0,column=5)
 
         # btn1_frame=Frame(ci_frame,bd=2,relief=RIDGE)
@@ -304,6 +305,90 @@ class Student:
         self.var_rollno.set("")
 
   
+    # def generate_dataset(self):
+
+    #     if self.var_dep.get() == "Select Department" or self.var_name.get() == "" or self.var_pid.get() == "":
+    #         messagebox.showerror("Error", "All fields should be filled", parent=self.root)
+    #     else:
+    #         try:
+    #             conn = mysql.connector.connect(host="localhost", username="root", password="$Leaval10", database="sem4facestamp")
+    #             my_cursor = conn.cursor()
+    #             my_cursor.execute("select * from student")
+    #             myresult=my_cursor.fetchall()
+    #             id=0
+    #             for x in myresult:
+    #                 id+=1
+    #             my_cursor.execute("update student set Dep=%s, course=%s, year=%s, sem=%s, spid=%s, sname=%s, division=%s, rollno=%s where spid=%s", (
+    #                                                                                 self.var_dep.get(),
+    #                                                                                 self.var_course.get(),
+    #                                                                                 self.var_year.get(),
+    #                                                                                 self.var_sem.get(),  
+    #                                                                                 self.var_pid.get(),
+    #                                                                                 self.var_name.get(),
+    #                                                                                 self.var_div.get(),
+    #                                                                                 self.var_rollno.get(),
+    #                                                                                 self.var_pid.get()==id+1  ))
+
+    #             conn.commit()
+    #             self.fetchdata()
+    #             self.reset()
+    #             conn.close()
+
+    #             face_classifier=cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')              
+    #             def face_cropped(img):
+    #                 gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+    #                 faces=face_classifier.detectMultiScale(gray,1.3,5)  #sf=1.3,mn=5
+    #                 for (x,y,w,h) in faces:
+    #                     face_cropped=img[y:y+h,x:x+w]
+    #                     return face_cropped            
+    #             cap=cv2.VideoCapture(0)
+    #             img_id=0
+    #             print(cap)
+    #             while True:
+    #                 ret,my_frame=cap.read() 
+    #                 if face_cropped(my_frame) is not None: 
+    #                     img_id+=1
+    #                 face=cv2.resize(face_cropped(my_frame),(450,450)) 
+    #                 face=cv2.cvtColor(face,cv2.COLOR_BGR2GRAY) 
+    #                 file_name_path="data/user."+str(id)+"."+str(img_id)+".jpg" 
+    #                 cv2.imwrite(file_name_path,face)
+    #                 cv2.putText(face,str(img_id),(50,50),cv2.FONT_HERSHEY_COMPLEX,2,(0,255,0),2)
+    #                 cv2.imshow("Cropped Face", face)
+
+    #                 if cv2.waitKey(1)==13 or int(img_id)==100: #Enter button ASCI code
+    #                     break
+    #             cap.release()
+    #             cv2.destroyAllWindows()
+    #             messagebox.showinfo("Result","Generating data sets completed!!!")
+
+    #         except Exception as es:
+    #             print(es)
+    #             messagebox.showerror("Error",f"Due to:{str(es)}",parent=self.root)
+
+
+    def train_data(self):
+        data_dir=("data")
+        path=[os.path.join(data_dir,file) for file in os.listdir(data_dir)]
+
+        faces=[]
+        ids=[]
+
+        for image in path:
+            img=Image.open(image).convert('L') 
+            imageNp=np.array(img,'uint8')     #uint8...data type in array
+            id=int(os.path.split(image)[1].split('.')[1])
+
+            faces.append(imageNp)
+            ids.append(id)
+            cv2.imshow("Training",imageNp)
+            cv2.waitKey(1)==13
+        ids=np.array(ids)
+        recognizer = cv2.face.LBPHFaceRecognizer_create() #train the classifier
+        recognizer.train(faces,ids)
+        recognizer.write("classifier.xml")
+        cv2.destroyAllWindows()
+        messagebox.showinfo("Result","Training datasets completed!!")
+
     def generate_dataset(self):
         if self.var_dep.get() == "Select Department" or self.var_name.get() == "" or self.var_pid.get() == "":
             messagebox.showerror("Error", "All fields should be filled", parent=self.root)
@@ -336,21 +421,23 @@ class Student:
                 def face_cropped(img):
                     gray=cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
                     faces=face_classifier.detectMultiScale(gray,1.3,5)  #sf=1.3,mn=5
+                    if len(faces) == 0:
+                        return None
                     for (x,y,w,h) in faces:
                         face_cropped=img[y:y+h,x:x+w]
-                        return face_cropped            
+                        return cv2.resize(face_cropped, (450, 450))  # Resize the cropped face
                 cap=cv2.VideoCapture(0)
                 img_id=0
+                
                 while True:
                     ret,my_frame=cap.read() 
                     if face_cropped(my_frame) is not None: 
                         img_id+=1
-                    face=cv2.resize(face_cropped(my_frame),(450,450)) 
-                    face=cv2.cvtColor(face,cv2.COLOR_BGR2GRAY) 
-                    file_name_path="data/user."+str(id)+"."+str(img_id)+".jpg" 
-                    cv2.imwrite(file_name_path,face)
-                    cv2.putText(face,str(img_id),(50,50),cv2.FONT_HERSHEY_COMPLEX,2,(0,255,0),2)
-                    cv2.imshow("Cropped Face", face)
+                        face=cv2.cvtColor(face_cropped(my_frame),cv2.COLOR_BGR2GRAY) 
+                        file_name_path="data/user."+str(id)+"."+str(img_id)+".jpg" 
+                        cv2.imwrite(file_name_path,face)
+                        cv2.putText(face,str(img_id),(50,50),cv2.FONT_HERSHEY_COMPLEX,2,(0,255,0),2)
+                        cv2.imshow("Cropped Face", face)
 
                     if cv2.waitKey(1)==13 or int(img_id)==100: #Enter button ASCI code
                         break
@@ -362,31 +449,9 @@ class Student:
                 print(es)
                 messagebox.showerror("Error",f"Due to:{str(es)}",parent=self.root)
 
-
-    def train_data(self):
-        data_dir=("data")
-        path=[os.path.join(data_dir,file) for file in os.listdir(data_dir)]
-
-        faces=[]
-        ids=[]
-
-        for image in path:
-            img=Image.open(image).convert('L') 
-            imageNp=np.array(img,'uint8')     #uint8...data type in array
-            id=int(os.path.split(image)[1].split('.')[1])
-
-            faces.append(imageNp)
-            ids.append(id)
-            cv2.imshow("Training",imageNp)
-            cv2.waitKey(1)==13
-        ids=np.array(ids)
-        recognizer = cv2.face.LBPHFaceRecognizer_create() #train the classifier
-        recognizer.train(faces,ids)
-        recognizer.write("classifier.xml")
-        cv2.destroyAllWindows()
-        messagebox.showinfo("Result","Training datasets completed!!")
-
-
+    def exit_application(self):
+        if messagebox.askyesno("Confirm Exit", "Are you sure you want to exit?"):
+            self.root.destroy()
         
         
 if __name__ == "__main__":

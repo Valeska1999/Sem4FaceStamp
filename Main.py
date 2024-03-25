@@ -48,9 +48,9 @@ class Page2:
         img10 = Image.open(r"C:\Users\Valeska\Desktop\Sem4MiniProject\ImagesForGUI\TA.png")
         img10.thumbnail((210, 210), Image.ADAPTIVE)
         self.photoimg10 = ImageTk.PhotoImage(img10)
-        b10 = Button(f_lbl6, image=self.photoimg10,cursor="hand2")
+        b10 = Button(f_lbl6,command=self.takatt ,image=self.photoimg10,cursor="hand2")
         b10.place(x=450, y=200,width=220,height=220)  
-        b10_10 = Button(f_lbl6, text="Take Attendance",cursor="hand2",font=("Helvetica", 14), fg="black", bg="white", relief=FLAT)
+        b10_10 = Button(f_lbl6,command=self.takatt ,text="Take Attendance",cursor="hand2",font=("Helvetica", 14), fg="black", bg="white", relief=FLAT)
         b10_10.place(x=450, y=400,width=220,height=40)
         #CheckAttendance
         img8 = Image.open(r"C:\Users\Valeska\Desktop\Sem4MiniProject\ImagesForGUI\CA.png")
@@ -96,6 +96,14 @@ class Page2:
         self.new_window=Toplevel(self.root)
         self.app=Attendance(self.new_window)
     
+    def takatt(self):
+        self.new_window=Toplevel(self.root)
+        self.app=face_recognition(self.new_window)
+
+    def checkatt(self):
+        self.new_window=Toplevel(self.root)
+        self.app=Attendance(self.new_window)
+
   
 
     def open_img(self):
